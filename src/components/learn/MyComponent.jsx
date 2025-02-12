@@ -1,6 +1,13 @@
+//JSX
+
+import './style.css'
+
 const MyComponent = () => {
     return (
-        <div>Ninh Hoang Khai 1231 123</div>
+        <>
+            <div className='parent'>Ninh Hoang Khai 1231 123</div> //tag
+            <div className='child' style={{ borderRadius: "10px" }}> day la thanh phan con</div>
+        </>
     );
 }
 
