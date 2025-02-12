@@ -3,10 +3,10 @@ import { useState } from "react";
 const TodoNew = (props) => {
     const { addNewTodo } = props;
     // useState Hook
-    const [valueInput, setValueInput] = useState();
+    const [valueInput, setValueInput] = useState("");
 
     const handleClick = () => {
-        if (valueInput !== undefined && valueInput !== "") {
+        if (valueInput !== "") {
             addNewTodo(valueInput);
             setValueInput("");
         } else {
@@ -26,7 +26,7 @@ const TodoNew = (props) => {
                     type="text"
                     className="todo--txt"
                     onChange={(e) => handleOnChange(e.target.value)}
-                    value={valueInput !== undefined ? valueInput : ""}
+                    value={valueInput}
                 />
                 <button
                     onClick={handleClick}
