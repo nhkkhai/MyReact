@@ -66,6 +66,8 @@
 
 .todo--item {
     padding: 5px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .todo--image {

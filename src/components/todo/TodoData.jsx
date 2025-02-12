@@ -1,12 +1,18 @@
 
 const TodoData = (props) => {
-    const { name, age, work } = props.data;
+    const { todoList } = props;
 
     return (
         <>
             <div className="todo--data">
-                <div className="todo--item">My name is {name}</div>
-                <div className="todo--item">JavaScript</div>
+                {todoList.map((todo, index) => {
+                    return (
+                        <div className="todo--item">
+                            {todo.name}
+                            <button className="todo__btn--del">Delete</button>
+                        </div>
+                    )
+                })}
             </div>
         </>
     )
