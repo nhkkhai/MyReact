@@ -6,8 +6,12 @@ const TodoNew = (props) => {
     const [valueInput, setValueInput] = useState();
 
     const handleClick = () => {
-        addNewTodo(valueInput);
-        setValueInput("");
+        if (valueInput !== undefined && valueInput !== "") {
+            addNewTodo(valueInput);
+            setValueInput("");
+        } else {
+            alert("Vui long nhap thong tin");
+        }
     }
 
     const handleOnChange = (task) => {
@@ -22,7 +26,7 @@ const TodoNew = (props) => {
                     type="text"
                     className="todo--txt"
                     onChange={(e) => handleOnChange(e.target.value)}
-                    value={valueInput}
+                    value={valueInput !== undefined ? valueInput : ""}
                 />
                 <button
                     onClick={handleClick}
