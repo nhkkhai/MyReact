@@ -11,11 +11,17 @@ const App = () => {
     work: "FPT"
   };
 
+  const addNewTodo = () => {
+    alert("click click");
+  };
+
   return (
     <>
       <div className="todo--container">
         <div className="todo--title">Todo list</div>
-        <TodoNew />
+        <TodoNew
+          addNewTodo={addNewTodo}
+        />
         <TodoData
           data={data}
         />
