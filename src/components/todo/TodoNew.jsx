@@ -1,14 +1,21 @@
+import { useState } from "react";
 
 const TodoNew = (props) => {
-    const { addNewTodo } = props;
 
-    const handleOnChange = (task) => {
-        alert("change event", task);
-    }
+
+    const { addNewTodo } = props;
+    // useState Hook
+    const [valueInput, setValueInput] = useState();
 
     const handleClick = () => {
-        alert("click add");
+        alert("click  " + valueInput);
     }
+
+    const handleOnChange = (task) => {
+        setValueInput(task);
+    }
+
+
 
     return (
         <>

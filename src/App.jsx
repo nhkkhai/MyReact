@@ -2,8 +2,11 @@ import './components/todo/todo.css'
 import TodoData from './components/todo/TodoData'
 import TodoNew from './components/todo/TodoNew'
 import reactLogo from './assets/react.svg'
+import { useState } from 'react'
 
 const App = () => {
+
+  const [todoList, setTodoList] = useState();
 
   const data = {
     name: "Anywhere",
@@ -11,7 +14,7 @@ const App = () => {
     work: "FPT"
   };
 
-  const addNewTodo = () => {
+  const addNewTodo = (task) => {
     alert("click click");
   };
 
@@ -24,6 +27,7 @@ const App = () => {
         />
         <TodoData
           data={data}
+          todoList={todoList}
         />
         <div className='todo--image'>
           <img className='logo' src={reactLogo} alt="React Logo" />
