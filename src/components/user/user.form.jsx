@@ -4,31 +4,17 @@ import { useState } from "react";
 import { createUserAPI } from "../../services/api.service";
 
 
-const UserForm = () => {
+const UserForm = (props) => {
+
+    const { loadUsers } = props;
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
-    const handleClickBtn = async () => {
-        // const res = await createUserAPI(fullName, email, password, phoneNumber);
-        // if (res.data) {
-        //     // này là sử dụng Ant Design
-        //     notification.success({
-        //         message: "Tạo User",
-        //         description: "Tạo User thành công"
-        //     })
-        // } else {
-        //     notification.error({
-        //         message: "Lỗi tạo User",
-        //         description: JSON.stringify(res.message)
-        //     })
-        // }
-    }
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -41,7 +27,8 @@ const UserForm = () => {
                 message: "Tạo User",
                 description: "Tạo User thành công"
             })
-            setIsModalOpen(false);
+            handleCancel();
+            await loadUsers();
         } else {
             notification.error({
                 message: "Lỗi tạo User",
@@ -50,6 +37,10 @@ const UserForm = () => {
         }
     };
     const handleCancel = () => {
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhoneNumber("");
         setIsModalOpen(false);
     };
 

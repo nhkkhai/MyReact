@@ -1,15 +1,8 @@
 import { Table } from 'antd';
-import { fetchAllUserAPI } from '../../services/api.service';
-import { useState, useEffect } from 'react';
 
-const UserTable = () => {
+const UserTable = (props) => {
+    const { dataUsers } = props;
 
-    const [dataUsers, setDataUsers] = useState([]);
-
-    // empty arr thì chỉ chạy 1 lần
-    useEffect(() => {
-        loadUser();
-    }, []);
 
     const columns = [
         {
@@ -56,10 +49,7 @@ const UserTable = () => {
     //     },
     // ];
 
-    const loadUser = async () => {
-        const res = await fetchAllUserAPI();
-        setDataUsers(res.data);
-    }
+
 
     return (<Table columns={columns} dataSource={dataUsers} />);
 }
