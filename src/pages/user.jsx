@@ -5,10 +5,10 @@ import { fetchAllUserAPI } from '../services/api.service';
 
 
 const UserPage = () => {
-    const [dataUsers, setDataUsers] = useStateate([]);
+    const [dataUsers, setDataUsers] = useState([]);
 
     // empty arr thì chỉ chạy 1 lần
-    useEffectfect(() => {
+    useEffect(() => {
         loadUser();
     }, []);
 

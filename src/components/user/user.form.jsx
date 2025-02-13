@@ -12,12 +12,12 @@ const UserForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalCreateOpen, setIsModalCreateOpen] = useState(false);
 
 
 
     const showModal = () => {
-        setIsModalOpen(true);
+        setIsModalCreateOpen(true);
     };
     const handleCreateUser = async () => {
         const res = await createUserAPI(fullName, email, password, phoneNumber);
@@ -41,7 +41,7 @@ const UserForm = (props) => {
         setEmail("");
         setPassword("");
         setPhoneNumber("");
-        setIsModalOpen(false);
+        setIsModalCreateOpen(false);
     };
 
 
@@ -56,7 +56,7 @@ const UserForm = (props) => {
 
             </div>
 
-            <Modal title="Create User" open={isModalOpen} onOk={handleCreateUser} onCancel={handleCancel}
+            <Modal title="Create User" open={isModalCreateOpen} onOk={handleCreateUser} onCancel={handleCancel}
                 maskClosable={false}
                 onText={"Create"}
             >

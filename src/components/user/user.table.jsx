@@ -1,14 +1,26 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
+import UpdateUserModal from './user.update.modal';
+import { useState } from 'react';
 
 const UserTable = (props) => {
     const { dataUsers } = props;
 
+    const [dataUpdate, setDataUpdate] = useState(null);
+
+    const [isModalUpdate, setIsModalUpdate] = useState(false);
 
     const columns = [
         {
             title: 'ID',
             dataIndex: '_id',
-
+            render: (_, record) => {
+                return (
+                    <>
+                        <a href='{#}'>{record._id}</a>
+                    </>
+                )
+            }
         },
         {
             title: 'Full Name',
@@ -23,6 +35,24 @@ const UserTable = (props) => {
         {
             title: 'Tags',
             key: 'tags',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => {
+                return (
+                    <div style={{ display: "flex", gap: "20px" }}>
+                        <EditOutlined
+                            onClick={() => {
+                                setDataUpdate(record);
+
+                                setIsModalUpdate(true)
+                            }}
+                            style={{ cursor: "pointer", color: "yellow" }} />
+                        <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+                    </div>
+                )
+            },
         }
     ];
     // const data = [
@@ -49,9 +79,18 @@ const UserTable = (props) => {
     //     },
     // ];
 
+    return (<>
 
+        <Table columns={columns} dataSource={dataUsers} />
 
-    return (<Table columns={columns} dataSource={dataUsers} />);
+        <UpdateUserModal
+            isModalUpdate={isModalUpdate}
+            setIsModalUpdate={setIsModalUpdate}
+            setDataUpdate={setDataUpdate}
+            dataUpdate={dataUpdate}
+        />
+    </>
+    );
 }
 
 export default UserTable
