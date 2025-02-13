@@ -9,7 +9,6 @@ const UserTable = () => {
     // empty arr thì chỉ chạy 1 lần
     useEffect(() => {
         loadUser();
-
     }, []);
 
     const columns = [
@@ -60,7 +59,6 @@ const UserTable = () => {
     const loadUser = async () => {
         const res = await fetchAllUserAPI();
         setDataUsers(res.data);
-
     }
 
     return (<Table columns={columns} dataSource={dataUsers} />);
