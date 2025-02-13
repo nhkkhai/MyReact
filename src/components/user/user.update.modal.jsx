@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { updateUserAPI } from "../../services/api.service";
+import { Input, Modal, notification } from "antd";
 
 const UpdateUserModal = (props) => {
-    const { isModalUpdate, setIsModalUpdate, dataUpdate, setDataUpdate, loadUsers } = props;
+    const { isModalUpdate, setIsModalUpdate, dataUpdate, setDataUpdate, loadUser } = props;
 
     const [fullName, setFullName] = useState("");
     const [id, setID] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+
+    console.log("check log >>> ", props);
+
 
     // Khi gia tri data thay doi thi lap tuc chay useeffect
     useEffect(() => {
@@ -14,7 +18,7 @@ const UpdateUserModal = (props) => {
 
             setFullName(dataUpdate.fullName);
             setID(dataUpdate._id);
-            setPhoneNumber(dataUpdate.phoneNumber);
+            setPhoneNumber(dataUpdate.phone);
         }
 
     }, [dataUpdate])
@@ -28,7 +32,7 @@ const UpdateUserModal = (props) => {
                 description: "Cập nhật User thành công"
             })
             handleCancel();
-            await loadUsers();
+            await loadUser();
         } else {
             notification.error({
                 message: "Cập nhật User không thành công",
