@@ -9,7 +9,6 @@ const UpdateUserModal = (props) => {
     const [id, setID] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
-    console.log("check log >>> ", props);
 
 
     // Khi gia tri data thay doi thi lap tuc chay useeffect
@@ -55,8 +54,8 @@ const UpdateUserModal = (props) => {
         >
             <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
                 <div className="user_info">
-                    <span className="user_info-title">Email</span>
-                    <Input placeholder="Nhập ID" disable value={id} />
+                    <span className="user_info-title">ID</span>
+                    <Input placeholder="Nhập ID" disabled value={id} />
                 </div>
                 <div className="user_info">
                     <span className="user_info-title">FullName</span>
