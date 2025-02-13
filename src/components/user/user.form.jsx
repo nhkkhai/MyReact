@@ -1,7 +1,7 @@
-import { Input, Button } from "antd";
+import { Input, Button, notification, message } from "antd";
 import './user.form.css'
 import { useState } from "react";
-import axios from "axios";
+import { createUserAPI } from "../../services/api.service";
 
 
 const UserForm = () => {
@@ -11,24 +11,15 @@ const UserForm = () => {
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
 
-    const handleClickBtn = () => {
-        const URL_BACKEND = "http://localhost:8080/api/v1/user";
-        const data = {
-            fullName: fullName,
-            email: email,
-            password: password,
-            phone: phoneNumber
-        }
-
-        axios.post(URL_BACKEND, data)
-            .then(function (response) {
-                console.log(response);
+    const handleClickBtn = async () => {
+        const res = await createUserAPI(fullName, email, password, phoneNumber);
+        if (res.data) {
+            // này là sử dụng Ant Design
+            notification.success({
+                message: "Tạo User",
+                description: "Tạo User thành công"
             })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        console.log(">> Check log: ", { fullName, email, password, phoneNumber });
+        }
     }
 
 
