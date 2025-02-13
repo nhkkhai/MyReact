@@ -22,7 +22,9 @@ const UserPage = () => {
             <UserForm
                 loadUser={loadUser} />
             <UserTable
-                dataUsers={dataUsers} />
+
+                dataUsers={dataUsers}
+                loadUser={loadUser} />
         </div>
     )
 }

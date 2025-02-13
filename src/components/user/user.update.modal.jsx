@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { updateUserAPI } from "../../services/api.service";
 
 const UpdateUserModal = (props) => {
-    const { isModalUpdate, setIsModalUpdate, dataUpdate, setDataUpdate } = props;
+    const { isModalUpdate, setIsModalUpdate, dataUpdate, setDataUpdate, loadUsers } = props;
 
     const [fullName, setFullName] = useState("");
     const [id, setID] = useState("");
@@ -20,18 +20,18 @@ const UpdateUserModal = (props) => {
     }, [dataUpdate])
 
     const handleUpdateUser = async () => {
-        const res = await updateUserAPI(fullName, email, password, phoneNumber);
+        const res = await updateUserAPI(fullName, id, phoneNumber);
         if (res.data) {
             // này là sử dụng Ant Design
             notification.success({
-                message: "Tạo User",
-                description: "Tạo User thành công"
+                message: "Update User",
+                description: "Cập nhật User thành công"
             })
             handleCancel();
-            // await loadUsers();
+            await loadUsers();
         } else {
             notification.error({
-                message: "Lỗi tạo User",
+                message: "Cập nhật User không thành công",
                 description: JSON.stringify(res.message)
             })
         }
