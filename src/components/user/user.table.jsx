@@ -115,12 +115,6 @@ const UserTable = (props) => {
     // ];
 
     return (<>
-        <UserInfo
-            isOpenInfo={isOpenInfo}
-            setIsOpenInfo={setIsOpenInfo}
-            dataInfo={dataInfo}
-            setDataInfo={setDataInfo}
-        />
 
         <Table columns={columns} dataSource={dataUsers} />
 
@@ -129,6 +123,13 @@ const UserTable = (props) => {
             setIsModalUpdate={setIsModalUpdate}
             setDataUpdate={setDataUpdate}
             dataUpdate={dataUpdate}
+            loadUser={loadUser}
+        />
+        <UserInfo
+            isOpenInfo={isOpenInfo}
+            setIsOpenInfo={setIsOpenInfo}
+            dataInfo={dataInfo}
+            setDataInfo={setDataInfo}
             loadUser={loadUser}
         />
     </>
