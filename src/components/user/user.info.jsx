@@ -1,5 +1,4 @@
 import { Drawer } from "antd";
-import { useEffect, useState } from "react";
 
 const UserInfo = (props) => {
 

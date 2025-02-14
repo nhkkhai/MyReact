@@ -1,8 +1,9 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Table } from 'antd';
+import { Popconfirm, Table } from 'antd';
 import UpdateUserModal from './user.update.modal';
 import { useState } from 'react';
 import UserInfo from './user.info';
+import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
     const { dataUsers, loadUser } = props;
@@ -13,6 +14,23 @@ const UserTable = (props) => {
     const [isModalUpdate, setIsModalUpdate] = useState(false);
 
     const [isOpenInfo, setIsOpenInfo] = useState(false);
+
+
+    const handleDeleteUser = async (id) => {
+        const res = await deleteUserAPI(id)
+        if (res.data) {
+            notification.success({
+                message: "Delete User",
+                description: "Xóa User thành công"
+            })
+            await loadUser();
+        } else {
+            notification.error({
+                message: "Xóa User không thành công",
+                description: JSON.stringify(res.message)
+            })
+        }
+    }
 
 
     const columns = [
@@ -51,11 +69,22 @@ const UserTable = (props) => {
                         <EditOutlined
                             onClick={() => {
                                 setDataUpdate(record);
-
                                 setIsModalUpdate(true)
                             }}
                             style={{ cursor: "pointer", color: "yellow" }} />
-                        <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+                        <Popconfirm
+                            placement='left'
+                            title="Delete User"
+                            description="Are you sure to delete this User?"
+                            // onConfirm={confirm}
+                            // onCancel={cancel}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+                        </Popconfirm>
+
+
                     </div>
                 )
             },
