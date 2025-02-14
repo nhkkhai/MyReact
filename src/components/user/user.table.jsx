@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Popconfirm, Table } from 'antd';
+import { notification, Popconfirm, Table } from 'antd';
 import UpdateUserModal from './user.update.modal';
 import { useState } from 'react';
 import UserInfo from './user.info';
@@ -87,7 +87,7 @@ const UserTable = (props) => {
                             placement='left'
                             title="Delete User"
                             description="Are you sure to delete this User?"
-                            onConfirm={() => handleDeleteUser(record.id)}
+                            onConfirm={() => handleDeleteUser(record._id)}
                             // onCancel={cancel}
                             okText="Yes"
                             cancelText="No"
