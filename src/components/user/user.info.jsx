@@ -12,13 +12,13 @@ const UserInfo = (props) => {
 
     const handleUpdateAvatar = async () => {
         // upload file
-        const resUpload = await handleUploadFile(selectedFile, "avatar")
+        const resUpload = await handleUploadFile(selectedFile, 'avatar');
 
         if (resUpload.data) {
             //success
             const newAvatar = resUpload.data.fileUploaded;
             // update user
-            const resUpdateAvatar = await updateUserAvatarAPI(dataInfo._id, dataInfo.fullName, dataInfo.phone, newAvatar);
+            const resUpdateAvatar = await updateUserAvatarAPI(newAvatar, dataInfo._id, dataInfo.fullName, dataInfo.phone,);
             if (resUpdateAvatar.data) {
                 setIsOpenInfo(false);
                 setSelectedFile(null);
@@ -55,6 +55,7 @@ const UserInfo = (props) => {
         if (!e.target.files || e.target.files.length === 0) {
             setSelectedFile(null);
             setPreview(null);
+            return;
         }
 
         // I've kept this example simple by using the first image instead of multiple
@@ -100,12 +101,9 @@ const UserInfo = (props) => {
                             borderRadius: "5px",
                             cursor: "pointer"
                         }}
-                        Upload Avatar
-                    ></label>
+
+                    >Upload Avatar</label>
                     <input type='file' id="btnUpload" hidden onChange={onSelectFile} />
-                    {selectedFile && <img src={preview} />}
-
-
                 </div>
                 {
                     preview &&

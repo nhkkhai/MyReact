@@ -37,9 +37,8 @@ const fetchAllUserAPI = (current, pageSize) => {
 
 const handleUploadFile = (file, folder) => {
     const URL_BACKEND = `/api/v1/file/upload`;
-
     let config = {
-        header: {
+        headers: {
             "upload-type": folder,
             "Content-Type": "multipart/form-data"
         }
@@ -51,7 +50,7 @@ const handleUploadFile = (file, folder) => {
     return axios.post(URL_BACKEND, bodyFormData, config)
 }
 
-const updateUserAvatarAPI = (_id, fullName, phone, avatar) => {
+const updateUserAvatarAPI = (avatar, _id, fullName, phone) => {
     const URL_BACKEND = "/api/v1/user";
     const data = {
         _id: _id,
