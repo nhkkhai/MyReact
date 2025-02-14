@@ -76,7 +76,7 @@ const UserTable = (props) => {
                             placement='left'
                             title="Delete User"
                             description="Are you sure to delete this User?"
-                            // onConfirm={confirm}
+                            onConfirm={() => handleDeleteUser(record.id)}
                             // onCancel={cancel}
                             okText="Yes"
                             cancelText="No"
