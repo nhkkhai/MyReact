@@ -6,7 +6,7 @@ import UserInfo from './user.info';
 import { deleteUserAPI } from '../../services/api.service';
 
 const UserTable = (props) => {
-    const { dataUsers, loadUser } = props;
+    const { dataUsers, loadUser, current, pageSize, total, setCurrent, setPageSize } = props;
 
     const [dataUpdate, setDataUpdate] = useState(null);
     const [dataInfo, setDataInfo] = useState(null);
@@ -34,6 +34,17 @@ const UserTable = (props) => {
 
 
     const columns = [
+
+        {
+            title: "STT",
+            render: (_, record, index) => {
+                return (
+                    <>
+                        {(index + 1) + (current - 1) * pageSize}
+                    </>
+                );
+            }
+        },
         {
             title: 'ID',
             dataIndex: '_id',
@@ -114,9 +125,40 @@ const UserTable = (props) => {
     //     },
     // ];
 
+    const onChange = (pagination, filters, sorter, extra) => {
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +current) {
+                // dùng dấu + sẽ tự covert chuỗi sang số nguyên
+                setCurrent(+pagination.current);
+            }
+        }
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                // dùng dấu + sẽ tự covert chuỗi sang số nguyên
+                setPageSize(+pagination.pageSize);
+            }
+        }
+    };
+
+
     return (<>
 
-        <Table columns={columns} dataSource={dataUsers} />
+        <Table
+            columns={columns}
+            dataSource={dataUsers}
+            pagination={
+                {
+                    // đang đứng ở trang nào
+                    current: { current },
+                    // số lượng phần tử trong 1 trang
+                    pageSize: { pageSize },
+                    showSizeChanger: true,
+                    total: { total },
+                    showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
+                }}
+            onChange={() => onChange()}
+
+        />
 
         <UpdateUserModal
             isModalUpdate={isModalUpdate}
