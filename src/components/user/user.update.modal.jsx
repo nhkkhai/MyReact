@@ -11,7 +11,7 @@ const UpdateUserModal = (props) => {
 
 
 
-    // Khi gia tri data thay doi thi lap tuc chay useeffect
+    // Khi gia tri data thay doi thi lap tuc chay useEffect
     useEffect(() => {
         if (dataUpdate) {
 
