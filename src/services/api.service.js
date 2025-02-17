@@ -91,8 +91,14 @@ const getAccountAPI = (e) => {
     return axios.get(URL_BACKEND)
 }
 
+const fetchAllBooksAPI = (current, pageSize) => {
+    const URL_BACKEND = `/api/v1/book?current=${current}&pageSize=${pageSize}`;
+
+    return axios.get(URL_BACKEND)
+}
+
 export {
     createUserAPI, updateUserAPI, fetchAllUserAPI,
     deleteUserAPI, handleUploadFile, updateUserAvatarAPI,
-    registerUserAPI, loginUserAPI, getAccountAPI
+    registerUserAPI, loginUserAPI, getAccountAPI, fetchAllBooksAPI
 }

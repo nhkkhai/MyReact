@@ -9,9 +9,9 @@ const UserTable = (props) => {
     const { dataUsers, loadUser, current, pageSize, total, setCurrent, setPageSize } = props;
 
 
-    const [dataUpdate, setDataUpdate] = useState(null);
-    const [dataInfo, setDataInfo] = useState(null);
 
+    const [dataInfo, setDataInfo] = useState(null);
+    const [dataUpdate, setDataUpdate] = useState(null);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
 
     const [isOpenInfo, setIsOpenInfo] = useState(false);

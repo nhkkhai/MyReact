@@ -72,7 +72,7 @@ const Header = () => {
 
     return (
         <>
-            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+            <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
 
         </>
     );

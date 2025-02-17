@@ -28,10 +28,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element:
-          (<PrivateRoutes>
-            <BooksPage />
-          </PrivateRoutes>)
+        element: <BooksPage />
+        // (<PrivateRoutes>
+        //   <BooksPage />
+        // </PrivateRoutes>)
       },
       {
         path: "/users",
@@ -56,7 +56,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthWrapper>
       <RouterProvider router={router} />
-
     </AuthWrapper>
   </React.StrictMode>,
 )
