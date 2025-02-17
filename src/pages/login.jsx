@@ -2,11 +2,13 @@ import { Button, Col, Divider, Form, Input, message, notification, Row } from "a
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserAPI } from "../services/api.service";
 import { useState } from "react";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
+    const { setUser } = useContext(AuthContext);
 
 
     const onFinish = async (values) => {
@@ -14,6 +16,8 @@ const LoginPage = () => {
         const res = await loginUserAPI(values.email, values.password);
         if (res.data) {
             message.success("Đăng nhập thành công");
+            localStorage.setItem("access_token", res.data.access_token);
+            setUser(res.data.user);
             navigate("/");
         } else {
             notification.error({

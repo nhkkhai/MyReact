@@ -1,6 +1,7 @@
 import { Button, Form, Input, notification, Row, Col, Divider } from "antd"
 import { registerUserAPI } from "../services/api.service";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 
 const RegisterPage = () => {
@@ -35,7 +36,7 @@ const RegisterPage = () => {
                 onFinish={onFinish}
             // onFinishFailed={onFinishFailed}
             >
-                <h3>Đăng ký tài khoản</h3>
+                <h3 style={{ textAlign: "center" }}>Đăng ký tài khoản</h3>
 
 
                 <Row justify={"center"}>
