@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AliwangwangOutlined, AppstoreOutlined, LoginOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 import { Menu } from 'antd';
 import { useContext, useState } from 'react';
@@ -35,21 +35,24 @@ const Header = () => {
             key: 'books',
             icon: <SettingOutlined />,
         },
-        {
-            label: "Cài đặt",
-            key: 'settings',
-            icon: <SettingOutlined />,
+        ...(!user.id ? [{
+            label: <Link to={"/login"}>Đăng nhập</Link>,
+            key: 'login',
+            icon: <LoginOutlined />,
+        }] : []),
+
+        ...(user.id ? [{
+            label: `Welcome ${user.fullName}`,
+            key: 'setting',
+            icon: <AliwangwangOutlined />,
             children: [
                 {
-                    label: <Link to={"/login"}>Đăng nhập</Link>,
-                    key: "login",
+                    label: 'Đăng xuất',
+                    key: 'logout',
                 },
-                {
-                    label: "Đăng xuất",
-                    key: "logout",
-                }
-            ]
-        },
+            ],
+        }] : []),
+
     ];
 
     return (
