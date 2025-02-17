@@ -14,6 +14,7 @@ import './styles/global.css';
 import TodoApp from './components/todo/TodoApp.jsx';
 import ErrorPage from './pages/error-page.jsx';
 import { AuthWrapper } from './components/context/auth.context.jsx';
+import PrivateRoutes from './routes/private.routes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BooksPage />,
+        element:
+          (<PrivateRoutes>
+            <BooksPage />
+          </PrivateRoutes>)
       },
       {
         path: "/users",
