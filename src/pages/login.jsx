@@ -1,10 +1,27 @@
-import { Col, Form, Input, Row } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Col, Divider, Form, Input, message, notification, Row } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUserAPI } from "../services/api.service";
+import { useState } from "react";
 
 const LoginPage = () => {
     const [form] = Form.useForm();
+    const [isLoading, setIsLoading] = useState(false);
+    let navigate = useNavigate();
 
-    const onFinish = (values) => {
+
+    const onFinish = async (values) => {
+        setIsLoading(true);
+        const res = await loginUserAPI(values.email, values.password);
+        if (res.data) {
+            message.success("Đăng nhập thành công");
+            navigate("/");
+        } else {
+            notification.error({
+                message: "Error Login",
+                description: JSON.stringify(res.message),
+            })
+        }
+        setIsLoading(false)
 
     }
 
@@ -69,9 +86,11 @@ const LoginPage = () => {
                                 justifyContent: "space-between",
                                 alignItems: "center"
                             }}>
-                                <Button onClick={() => {
-                                    form.submit();
-                                }} type="primary" >Login</Button>
+                                <Button
+                                    loading={isLoading}
+                                    onClick={() => {
+                                        form.submit();
+                                    }} type="primary" >Login</Button>
                                 <Link to={"/"}>Go to Home page</Link>
                             </div>
                         </Form.Item>

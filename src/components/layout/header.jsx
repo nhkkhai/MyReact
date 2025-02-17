@@ -49,11 +49,7 @@ const Header = () => {
     return (
         <>
             <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
-            <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/users">Users</NavLink></li>
-                <li><NavLink to="/books">BooksPage</NavLink></li>
-            </ul>
+
         </>
     );
 }
